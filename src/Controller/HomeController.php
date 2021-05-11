@@ -27,7 +27,7 @@ class HomeController extends AbstractController {
 	 * @return Response
 	 * @IsGranted("ROLE_USER")
 	 */
-	public function index(Request $request) {
+	public function index(Request $request): Response {
 		$user = $this->getUser();
 
 		return $this->render("index.html.twig", [
@@ -40,7 +40,7 @@ class HomeController extends AbstractController {
 	 * @IsGranted("ROLE_ADMIN")
 	 * @return Response
 	 */
-	public function admin() {
+	public function admin(): Response {
 		return $this->render("admin.html.twig", [
 			"calls" => AsteriskApi::getConfList(),
 			"confs" => AsteriskApi::getCurrentConfs()
@@ -54,7 +54,7 @@ class HomeController extends AbstractController {
 	 * @IsGranted("ROLE_ADMIN")
 	 * @return Response
 	 */
-	public function cron() {
+	public function cron(): Response {
 		AsteriskApi::cron();
 
 		return new Response("OK.");
@@ -67,7 +67,7 @@ class HomeController extends AbstractController {
 	 * @IsGranted("ROLE_USER")
 	 * @throws Exception
 	 */
-	public function create(Request $req) {
+	public function create(Request $req): Response {
 
 		$user = $this->getUser();
 		$date = new DateTime($req->query->get('d'));
@@ -94,7 +94,7 @@ class HomeController extends AbstractController {
 	 * @param $id
 	 * @return RedirectResponse
 	 */
-	public function deleteConf($id) {
+	public function deleteConf($id): RedirectResponse {
 		AsteriskAPI::deleteConference($id);
 
 		return $this->redirect("/");
