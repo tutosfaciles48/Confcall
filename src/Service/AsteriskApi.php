@@ -38,7 +38,7 @@ class AsteriskApi {
 	/**
 	 * @return int
 	 */
-	private static function r() {
+	private static function r(): int {
 		try {
 			return random_int(1000, 9999);
 		} catch (Exception $e) {
@@ -59,7 +59,7 @@ class AsteriskApi {
 	 * @return array
 	 * @throws Exception
 	 */
-	public static function createConf($user, $date, $start, $end): array {
+	public static function createConf(string $user, string $date, string $start, string $end): array {
 		$asm = new AGI_AsteriskManager();
 
 		$conferences = array();
@@ -146,7 +146,7 @@ class AsteriskApi {
 	 * @param AGI_AsteriskManager|null $asm
 	 * @return array
 	 */
-	public static function getConfList($asm = null): array {
+	public static function getConfList(AGI_AsteriskManager $asm = null): array {
 		if(is_null($asm)) {
 			$asm = new AGI_AsteriskManager();
 		}
