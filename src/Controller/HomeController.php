@@ -23,13 +23,10 @@ class HomeController extends AbstractController {
 
 	/**
 	 * @Route("/", name="app_index")
-	 * @param Request $request
 	 * @return Response
 	 * @IsGranted("ROLE_USER")
 	 */
-	public function index(Request $request): Response {
-		$user = $this->getUser();
-
+	public function index(): Response {
 		return $this->render("index.html.twig", [
 			"calls" => AsteriskApi::getConfList()
 		]);
